@@ -1,5 +1,4 @@
 import sys
-import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QToolBar, QAction, QLineEdit
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
@@ -9,10 +8,9 @@ class Browser(QMainWindow):
         super().__init__()
 
         self.browser = QWebEngineView()
-        
-        # Load the custom home page
-        home_url = QUrl.fromLocalFile(os.path.abspath("home.html"))
-        self.browser.setUrl(home_url)
+
+        # Set the home page to the GitHub Pages URL
+        self.browser.setUrl(QUrl("https://your-username.github.io/ollbrow-homepage/home.html"))
 
         self.setCentralWidget(self.browser)
         self.showMaximized()
@@ -44,9 +42,8 @@ class Browser(QMainWindow):
         self.browser.urlChanged.connect(self.update_url)
 
     def navigate_home(self):
-        # Navigate to the custom home page
-        home_url = QUrl.fromLocalFile(os.path.abspath("home.html"))
-        self.browser.setUrl(home_url)
+        # Navigate to the GitHub Pages URL
+        self.browser.setUrl(QUrl("https://your-username.github.io/ollbrow-homepage/home.html"))
 
     def navigate_to_url(self):
         url = self.url_bar.text()
